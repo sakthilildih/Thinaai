@@ -8,7 +8,11 @@ services:
     autoDeploy: true
     envVars:
       - key: PYTHON_VERSION
+<<<<<<< HEAD
         value: 3.11.9
+=======
+        value: 3.11
+>>>>>>> e37136636f97fb49380ea0575e324f3448a5bf67
       # Set DEBUG to false in production
       - key: DEBUG
         value: false

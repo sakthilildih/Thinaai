@@ -105,7 +105,10 @@ try:
             'PASSWORD': DATABASE_CONFIG['PASSWORD'],
             'HOST': DATABASE_CONFIG['HOST'],
             'PORT': DATABASE_CONFIG['PORT'],
+<<<<<<< HEAD
             'OPTIONS': {'sslmode': 'require'},
+=======
+>>>>>>> e37136636f97fb49380ea0575e324f3448a5bf67
         }
     }
 except ImportError:
@@ -118,7 +121,10 @@ except ImportError:
             'PASSWORD': config('DB_PASSWORD', default=''),
             'HOST': config('DB_HOST', default='localhost'),
             'PORT': config('DB_PORT', default='5432'),
+<<<<<<< HEAD
             'OPTIONS': {'sslmode': 'require'},
+=======
+>>>>>>> e37136636f97fb49380ea0575e324f3448a5bf67
         }
     }
 

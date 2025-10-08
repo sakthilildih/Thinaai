@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from decouple import config
 
 # Supabase Database Configuration (sourced from environment variables)
@@ -11,3 +12,24 @@ DATABASE_CONFIG = {
     'PORT': config('DB_PORT', default='5432'),
 }
 
+=======
+# Supabase Database Configuration
+# Your actual Supabase credentials
+
+DATABASE_CONFIG = {
+    'NAME': 'postgres',
+    'USER': 'postgres',
+    'PASSWORD': 'Psycho.jocker2507',
+    'HOST': 'db.gwmwmyxhhqhotefrsapf.supabase.co',
+    'PORT': '5432',
+}
+
+# Example:
+# DATABASE_CONFIG = {
+#     'NAME': 'postgres',
+#     'USER': 'postgres', 
+#     'PASSWORD': 'mypassword123',
+#     'HOST': 'abcdefghijklmnop.supabase.co',
+#     'PORT': '5432',
+# }
+>>>>>>> e37136636f97fb49380ea0575e324f3448a5bf67
