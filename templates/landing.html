@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'styles/landing.css' %}" />
+    <title>Thinaai — Connect with groups that match your interests.</title>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-3H7KC0JS4D"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-3H7KC0JS4D");
+    </script>
+  </head>
+  <body>
+    <div class="page">
+      <div class="bg"></div>
+
+      <div class="container">
+        <section class="left">
+          <div class="shot shot-a">
+            <img src="{% static 'images/h1.jpg' %}" alt="App screenshot A" />
+          </div>
+          <div class="shot shot-b">
+            <img src="{% static 'images/h3.jpg' %}" alt="App screenshot B" />
+          </div>
+          <div class="shot shot-c">
+            <img src="{% static 'images/h2.jpg' %}" alt="App screenshot C" />
+          </div>
+        </section>
+
+        <section class="right">
+          <h1>Connect with groups that match your interests.</h1>
+          <p class="sub">
+            Join vibrant communities, talk freely, and build meaningful
+            connections.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="{% url 'home' %}">Get Started</a>
+            <a class="btn link" href="#learn-more">Learn More</a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
