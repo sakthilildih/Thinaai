@@ -89,6 +89,9 @@ def room(request, pk):
     participants = room.participants.all()
 
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.error(request, 'You need to login to send a message.')
+            return redirect('login')
         body = (request.POST.get('body') or '').strip()
         if body:
             message = Message.objects.create(

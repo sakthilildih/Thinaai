@@ -411,11 +411,11 @@ a {
 }
 
 .layout--2 > .container > div:first-child {
-  flex-basis: 72%;
+  flex-basis: 80%;
 }
 
 .layout--2 > .container > div:last-child {
-  flex-basis: 25%;
+  flex-basis: 18%;
 }
 /*========== Layout Box ==========*/
 
@@ -913,6 +913,14 @@ a {
   .layout--2 > .container > div:first-child {
     flex-basis: 100%;
   }
+  
+  .room__conversation {
+    height: 85%;
+  }
+  
+  .threads {
+    margin-top: 18vh;
+  }
 }
 
 .room__top,
@@ -996,6 +1004,15 @@ a {
     overflow-y: auto;
     padding-bottom: 0;
   }
+  
+  .room__conversation {
+    height: 82%;
+  }
+  
+  .threads {
+    margin-top: 16vh;
+    padding: 0 1.5rem 4rem 1.5rem;
+  }
 }
 
 .room__info {
@@ -1042,7 +1059,7 @@ a {
 .room__conversation {
   margin-top: 1rem;
   margin-bottom: 4rem;
-  height: 64%;
+  height: 80%;
 }
 
 .threads h3 {
@@ -1056,7 +1073,7 @@ a {
   border-radius: 0.7rem;
   overflow-y: auto;
   height: 100%;
-  margin-top: 28vh;
+  margin-top: 20vh;
   padding: 0 2rem 4rem 2rem;
 }
 

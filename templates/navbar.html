@@ -23,9 +23,6 @@
       </label>
     </form>
     <nav class="header__menu">
-      <a class="btn btn--main btn--pill" href="{% url 'feedback' %}"
-        >Feedback</a
-      >
       <!-- Logged In -->
       {% if request.user.is_authenticated %}
       <div class="header__user">
