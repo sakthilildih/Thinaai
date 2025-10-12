@@ -26,29 +26,8 @@
           {% csrf_token %}
 
           <div class="form__group">
-            <label
-              >What problems do you face when trying to have real conversations
-              online?</label
-            >
-            {{ form.problems_text }}
-          </div>
-
-          <div class="form__group">
-            <label
-              >What did you like most about Thinaai, and what confused or
-              frustrated you?</label
-            >
-            {{ form.likes_dislikes_text }}
-          </div>
-
-          <div class="form__group">
-            <label>Which feature would you use the most?</label>
-            {{ form.feature_choice }}
-          </div>
-
-          <div class="form__group">
-            <label>Why?</label>
-            {{ form.feature_reason }}
+            <label>Share your feedback with us</label>
+            {{ form.message }}
           </div>
 
           <div class="form__action">

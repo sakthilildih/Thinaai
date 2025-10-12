@@ -25,4 +25,4 @@ class UserForm(ModelForm):
 class FeedbackForm(ModelForm):
     class Meta:
         model = Feedback
-        fields = ['problems_text', 'likes_dislikes_text', 'feature_choice', 'feature_reason']
+        fields = ['message']

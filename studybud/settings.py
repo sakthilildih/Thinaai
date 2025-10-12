@@ -23,15 +23,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-3#av2c6nptlbbb6^muqkchu&fe3wv&n$t2+g$v!ir-f5%doocb')
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool, default=False)
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-localhost-development-key-change-in-production')
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = [host for host in config('ALLOWED_HOSTS', default='').split(',') if host] or ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,0.0.0.0').split(',')
 
-# CSRF trusted origins (comma-separated, include scheme)
-CSRF_TRUSTED_ORIGINS = [origin for origin in config('CSRF_TRUSTED_ORIGINS', default='').split(',') if origin]
+
 
 
 # Application definition
@@ -94,38 +92,21 @@ WSGI_APPLICATION = 'studybud.wsgi.application'
 
 # Database configuration
 # Using supabase_config.py file with your Supabase credentials
+from supabase_config import DATABASE_CONFIG
 
-try:
-    from supabase_config import DATABASE_CONFIG
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': DATABASE_CONFIG['NAME'],
-            'USER': DATABASE_CONFIG['USER'],
-            'PASSWORD': DATABASE_CONFIG['PASSWORD'],
-            'HOST': DATABASE_CONFIG['HOST'],
-            'PORT': DATABASE_CONFIG['PORT'],
-            'OPTIONS': {'sslmode': 'require'},
-        }
+# Default to SQLite for localhost development
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-except ImportError:
-    # Fallback to environment variables if config file is not available
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DB_NAME', default='postgres'),
-            'USER': config('DB_USER', default='postgres'),
-            'PASSWORD': config('DB_PASSWORD', default=''),
-            'HOST': config('DB_HOST', default='localhost'),
-            'PORT': config('DB_PORT', default='5432'),
-            'OPTIONS': {'sslmode': 'require'},
-        }
-    }
-
+}
 
 # Override database if DATABASE_URL is provided (e.g., on Render)
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.parse(os.environ['DATABASE_URL'], conn_max_age=600, ssl_require=True)
+DATABASE_URL = config('DATABASE_URL', default=None)
+if DATABASE_URL:
+    DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -173,6 +154,8 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = BASE_DIR / 'static/images'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Use WhiteNoise for static files serving (works for both localhost and production)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
@@ -182,3 +165,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# Production security settings
+if not DEBUG:
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_REDIRECT_EXEMPT = []
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    X_FRAME_OPTIONS = 'DENY'

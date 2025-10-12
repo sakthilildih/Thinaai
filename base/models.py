@@ -83,21 +83,12 @@ class Message(models.Model):
 
 
 class Feedback(models.Model):
-    FEATURE_CHOICES = (
-        ("text", "Text chat"),
-        ("voice", "Voice chat"),
-        ("private", "Private chat"),
-    )
-
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    problems_text = models.TextField()
-    likes_dislikes_text = models.TextField()
-    feature_choice = models.CharField(max_length=10, choices=FEATURE_CHOICES)
-    feature_reason = models.TextField(null=True, blank=True)
+    message = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created']
 
     def __str__(self):
-        return f"Feedback #{self.id} - {self.get_feature_choice_display()}"
+        return f"Feedback #{self.id} - {self.message[:50]}..."

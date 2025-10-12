@@ -1,13 +1,12 @@
 from django.urls import path
 from . import views
-from django.views.generic import TemplateView
+
 
 urlpatterns = [
     path('login/', views.loginPage, name="login"),
     path('logout/', views.logoutUser, name="logout"),
     path('register/', views.registerPage, name="register"),
-    path('', TemplateView.as_view(template_name='landing.html'), name='landing'),
-    path('home/', views.home, name="home"),
+    path('', views.home, name="home"),
     path('room/<str:pk>/', views.room, name="room"),
     path('profile/<str:pk>/', views.userProfile, name="user-profile"),
 
